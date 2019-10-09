@@ -20,7 +20,8 @@ chmod 0700 /tmp/balena/xdg_runtime
 export XDG_RUNTIME_DIR=/tmp/balena/xdg_runtime
 
 # Enable touch screen
-export WPE_BCMRPI_TOUCH=1
+# export WPE_BCMRPI_TOUCH=1
+echo "Touch screen disabled in 'wpe-init'"
 
 # Start browser
 cog $WPE_URL &
