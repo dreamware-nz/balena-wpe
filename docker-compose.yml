@@ -7,3 +7,7 @@ services:
     privileged: true
     ports:
       - 8080:8080
+  cronlog:
+    restart: always
+    build: ./
+    entrypoint: python cronlog.py
