@@ -3,38 +3,39 @@ version: '2'
 services:
   wpe:
     restart: always
-    build: ./
+    build: ./wpe
     privileged: true
     environment:
-      - WPE_URL=http://pyflask:5000/
+      - WPE_URL=http://uix:5000/
     ports:
       - 8080:8080
     links:
-      - ui_server
+      - uix
     depends_on:
-      - ui_server
+      - uix
 
-  ui_server:
+  uix:
     restart: always
     image: johnjansen/pyflask_arm
     expose:
       - "5000"
+    links:
+      - hal
+      - pal
+      - ral
+    depends_on:
+      - hal
+      - pal
+      - ral
 
   hal:
     # hardware abstraction layer
-    image: alpine
-    tty: true
+    build: ./hal
 
   pal:
     # payment abstraction layer
-    image: alpine
-    tty: true
+    build: ./pal
 
   ral:
      # RFID abstraction layer
-    image: alpine
-    tty: true
-  
-  debug:
-    image: alpine
-    tty: true
+    build: ./ral
