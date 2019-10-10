@@ -9,14 +9,32 @@ services:
       - WPE_URL=http://pyflask:5000/
     ports:
       - 8080:8080
+    links:
+      - ui_server
     depends_on:
-      - pyflask
+      - ui_server
 
-  pyflask:
+  ui_server:
     restart: always
     image: johnjansen/pyflask_arm
     expose:
       - "5000"
 
+  hal:
+    # hardware abstraction layer
+    image: alpine
+    tty: true
+
+  pal:
+    # payment abstraction layer
+    image: alpine
+    tty: true
+
+  ral:
+     # RFID abstraction layer
+    image: alpine
+    tty: true
+  
   debug:
     image: alpine
+    tty: true
