@@ -1,11 +1,7 @@
 version: '2'
 volumes:
     logstash_pipeline:
-# services:
-#   logstash:
-#     image: blacktop/logstash
-#     volumes:
-#       - 'logstash_pipeline:/usr/share/logstash/pipeline/'
+services:
   wpe:
     restart: always
     build: ./wpe
