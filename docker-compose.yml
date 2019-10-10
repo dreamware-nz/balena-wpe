@@ -5,5 +5,18 @@ services:
     restart: always
     build: ./
     privileged: true
+    environment:
+      - WPE_URL=http://pyflask:5000/
     ports:
       - 8080:8080
+    depends_on:
+      - pyflask
+
+  pyflask:
+    restart: always
+    image: johnjansen/pyflask_arm
+    expose:
+      - "5000"
+
+  debug:
+    image: alpine
