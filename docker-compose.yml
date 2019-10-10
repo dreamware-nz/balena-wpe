@@ -1,6 +1,11 @@
 version: '2'
-
-services:
+volumes:
+    logstash_pipeline:
+# services:
+#   logstash:
+#     image: blacktop/logstash
+#     volumes:
+#       - 'logstash_pipeline:/usr/share/logstash/pipeline/'
   wpe:
     restart: always
     build: ./wpe
@@ -16,7 +21,8 @@ services:
 
   uix:
     restart: always
-    image: johnjansen/pyflask_arm
+    build: ./uix
+    privileged: true
     expose:
       - "5000"
     links:
@@ -31,11 +37,14 @@ services:
   hal:
     # hardware abstraction layer
     build: ./hal
+    privileged: true
 
   pal:
     # payment abstraction layer
     build: ./pal
+    privileged: true
 
   ral:
      # RFID abstraction layer
     build: ./ral
+    privileged: true
